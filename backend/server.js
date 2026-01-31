@@ -10,7 +10,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: ['https://stock-tracker-7lx7py7w9-nikhils-projects-f701059e.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 
 // ===== HOLDINGS ENDPOINTS =====
