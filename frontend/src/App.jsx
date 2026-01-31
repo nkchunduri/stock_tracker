@@ -17,7 +17,10 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  const API_BASE = '/api';
+  // const API_BASE = '/api';
+  const API_BASE = import.meta.env.VITE_API_URL 
+  ? `${import.meta.env.VITE_API_URL}/api` 
+  : '/api';
 
   useEffect(() => {
     fetchData();
