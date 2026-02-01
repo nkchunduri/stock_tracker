@@ -9,15 +9,30 @@ const stockService = require('./stockService');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
-// app.use(cors());
+// // Middleware
+// // app.use(cors());
+// app.use(cors({
+//   origin: [
+//     'https://stock-tracker-8coru2y2g-nikhils-projects-f701059e.vercel.app',
+//     'http://localhost:3000'
+//   ],
+//   credentials: true
+// }));
+
+// Middleware order is important!
 app.use(cors({
   origin: [
     'https://stock-tracker-8coru2y2g-nikhils-projects-f701059e.vercel.app',
     'http://localhost:3000'
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Body parser MUST come after CORS
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // ===== HOLDINGS ENDPOINTS =====
 
